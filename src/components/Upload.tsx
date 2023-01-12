@@ -83,27 +83,28 @@ class Upload extends Component<IProps, IState> {
       }
     );
     console.log(res);
+    this.setState({ confirmation: 'Uploaded' });
 
-    // let targetImage = UID + '.png';
-    // const response = await fetch(
-    //   'https://31gv9av7oe.execute-api.us-west-1.amazonaws.com/Production/ocr',
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application.json',
-    //     },
-    //     body: JSON.stringify(targetImage),
-    //   }
-    // );
-    // this.setState({ confirmation: '' });
+    let targetImage = files[0]?.name;
+    const response = await fetch(
+      'https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production/ocr',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application.json',
+        },
+        body: JSON.stringify(targetImage),
+      }
+    );
+    this.setState({ confirmation: '' });
 
-    // const OCRBody = await response.json();
-    // console.log('OCRBody', OCRBody);
+    const OCRBody = await response.json();
+    console.log('OCRBody', OCRBody);
 
-    // this.setState({ Amount: OCRBody.body[0] });
-    // this.setState({ Invoice: OCRBody.body[1] });
-    // this.setState({ InvoiceDate: OCRBody.body[2] });
+    this.setState({ Amount: OCRBody.body[0] });
+    this.setState({ Invoice: OCRBody.body[1] });
+    this.setState({ InvoiceDate: OCRBody.body[2] });
   }
 
   render() {
