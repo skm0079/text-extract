@@ -1,5 +1,11 @@
+import Upload from '../components/Upload';
+
 function Home() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Upload />
+    </>
+  );
 }
 
 export default Home;
