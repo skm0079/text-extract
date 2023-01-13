@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FileBase64 from 'react-file-base64';
 import { Button, Form, FormGroup, Label, FormText, Input } from 'reactstrap';
+import DisplayItem from './DisplayItem';
 
 import './upload.css';
 
@@ -94,17 +95,16 @@ class Upload extends Component<IProps, IState> {
           Accept: 'application/json',
           'Content-Type': 'application.json',
         },
-        body: JSON.stringify(targetImage),
+        // body: JSON.stringify(targetImage),
+        body: JSON.stringify({
+          file: targetImage,
+        }),
       }
     );
     this.setState({ confirmation: '' });
 
     const OCRBody = await response.json();
     console.log('OCRBody', OCRBody);
-
-    this.setState({ Amount: OCRBody.body[0] });
-    this.setState({ Invoice: OCRBody.body[1] });
-    this.setState({ InvoiceDate: OCRBody.body[2] });
   }
 
   render() {
@@ -125,79 +125,7 @@ class Upload extends Component<IProps, IState> {
                 ></FileBase64>
               </div>
             </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Invoice</h6>
-              </Label>
-              <Input
-                type="text"
-                name="Invoice"
-                id="Invoice"
-                required
-                value={this.state.Invoice}
-                onChange={this.handleChane}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Amount ($)</h6>
-              </Label>
-              <Input
-                type="text"
-                name="Amount"
-                id="Amount"
-                required
-                value={this.state.Amount}
-                onChange={this.handleChane}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Date</h6>
-              </Label>
-              <Input
-                type="text"
-                name="InvoiceDate"
-                id="InvoiceDate"
-                required
-                value={this.state.InvoiceDate}
-                onChange={this.handleChane}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Vendor</h6>
-              </Label>
-              <Input
-                type="text"
-                name="Vendor"
-                id="Vendor"
-                required
-                value={this.state.Vendor}
-                onChange={this.handleChane}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Description</h6>
-              </Label>
-              <Input
-                type="text"
-                name="Description"
-                id="Description"
-                required
-                value={this.state.Description}
-                onChange={this.handleChane}
-              />
-            </FormGroup>
-            <Button className="btn btn-lg btn-block  btn-success">
-              Submit
-            </Button>
+            <DisplayItem />
           </Form>
         </div>
       </div>
