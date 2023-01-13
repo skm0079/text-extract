@@ -1,9 +1,10 @@
-import Upload from '../components/Upload';
+// import Upload from '../components/Upload';
+import UploadFile from '../components/UploadFile';
 
 function Home() {
   return (
     <>
-      <Upload />
+      <UploadFile />
     </>
   );
 }

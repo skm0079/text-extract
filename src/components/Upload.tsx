@@ -106,7 +106,9 @@ class Upload extends Component<IProps, IState> {
     const OCRBody = await response.json();
     console.log('OCRBody', OCRBody);
   }
-
+  handleBigNext = () => {
+    window.location.href = '/cards';
+  };
   render() {
     const processing = this.state.confirmation;
     return (
@@ -119,13 +121,12 @@ class Upload extends Component<IProps, IState> {
               <FormText color="muted">PNG,JPG</FormText>
 
               <div className="form-group files color">
-                <FileBase64
-                  multiple={true}
-                  onDone={this.getFiles.bind(this)}
-                ></FileBase64>
+                <FileBase64 onDone={this.getFiles.bind(this)}></FileBase64>
               </div>
             </FormGroup>
-            <DisplayItem />
+            <Button id="big-next-btn" onClick={this.handleBigNext}>
+              Next
+            </Button>
           </Form>
         </div>
       </div>

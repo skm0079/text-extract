@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import apis from '../api/url';
-import { Table } from 'reactstrap';
+import { Button, Table } from 'reactstrap';
 import { getService } from '../services/httpServices';
-import ModalDisplay from './ModalDisplay';
+import { useNavigate } from 'react-router-dom';
 
 const DisplayItem = () => {
+  const navigate = useNavigate();
+
   const [allData, setAllData] = useState<any>([]);
   const [diaplayData, setDisplayData] = useState<any>([]);
 
@@ -13,7 +15,7 @@ const DisplayItem = () => {
       const { data } = await getService(apis.DB_DETAILS);
       setAllData(data.body);
       setDisplayData(data.body);
-      console.log(data);
+      console.log('Display Data', data);
     } catch (err) {
       console.log(err);
     }
@@ -22,6 +24,12 @@ const DisplayItem = () => {
   useEffect(() => {
     getAllData();
   }, []);
+
+  const handleViewNavigate = () => {
+    navigate('/details', {
+      state: allData,
+    });
+  };
 
   return (
     <div>
@@ -41,7 +49,8 @@ const DisplayItem = () => {
               <td>{file.fileName}</td>
               <td>{file.datetime}</td>
               <td className="flex-center">
-                <ModalDisplay buttonLabel="View" modalData={file} />
+                <Button onClick={handleViewNavigate}>View</Button>
+                {/* <ModalDisplay buttonLabel="View" modalData={allData} /> */}
               </td>
             </tr>
           ))}
