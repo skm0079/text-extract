@@ -10,7 +10,7 @@ const PDFJS = window.pdfjsLib;
 const UploadFile = () => {
   const navigate = useNavigate();
 
-  const [confirmation, setConfirmation] = useState<string>();
+  const [confirmation, setConfirmation] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // const [files, setFiles] = useState();
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -123,7 +123,7 @@ const UploadFile = () => {
       );
       setConfirmation('Finished');
       const OCRBody = await response.json();
-      console.log('OCRBody', OCRBody);
+      // console.log('OCRBody', OCRBody);
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -133,7 +133,7 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row" style={{ marginTop: '6em' }}>
       <div className="col-6 offset-3">
         <Form onSubmit={handleSubmit}>
           <FormGroup>
@@ -150,7 +150,9 @@ const UploadFile = () => {
             disabled={isLoading}
             onClick={handleBigNext}
           >
-            Next
+            {!confirmation || confirmation === 'Finished'
+              ? 'Next'
+              : confirmation}
           </Button>
         </Form>
       </div>
