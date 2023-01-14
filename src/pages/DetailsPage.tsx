@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import HomeButton from '../components/HomeButton';
+import LogoImage from '../components/LogoImage';
 import LogoutButton from '../components/LogoutButton';
 
 import './styles.css';
@@ -23,6 +24,7 @@ const DetailsPage = () => {
 
   return (
     <>
+      <LogoImage />
       <HomeButton />
       <LogoutButton />
       <div className="details-page-container">

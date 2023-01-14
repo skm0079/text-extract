@@ -1,42 +1,61 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.home-btn {
+  position: absolute;
+  top: 10px;
+  left: 85px;
+}
+.logo-img {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 40px;
+}
+.add-invoice-btn {
+  width: 20%;
+  margin-left: 2rem;
+}
+.search-input-box {
+  margin: 10px;
+  padding: 2px;
+  font-size: large;
+}
 .centered {
-    height: 100vh; /* Magic here */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.logout-btn{
-    position: absolute;
-    top:10px;
-    right:15px;
+  height: 100vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.home-btn{
-    position: absolute;
-    top:10px;
-    left:15px;
+.logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
-.modal-button{
-    margin: 0;
+
+.modal-button {
+  margin: 0;
 }
-.flex-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.text-center{
-    text-align: center;
+.text-center {
+  text-align: center;
 }
-.flex-between{
-    display: flex;
-    margin-right: 1rem;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+.flex-between {
+  display: flex;
+  margin-right: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.cardpage-header{
-    text-align: center;
+.cardpage-header {
+  text-align: center;
 }
-#big-next-btn{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+#big-next-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
 }

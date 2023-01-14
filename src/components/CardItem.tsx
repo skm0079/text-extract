@@ -9,6 +9,10 @@ const CardItem = (props: Props) => {
   const navigate = useNavigate();
 
   const { cardData } = props;
+
+  const processFileName = (fname: string) => {
+    return fname.split('.')[0];
+  };
   return (
     <Card
       body
@@ -17,7 +21,7 @@ const CardItem = (props: Props) => {
         width: '18rem',
       }}
     >
-      <CardTitle tag="h5">{cardData.fileName}</CardTitle>
+      <CardTitle tag="h5">{processFileName(cardData.fileName)}</CardTitle>
       <CardText>{cardData.datetime}</CardText>
       <Button
         color="primary"

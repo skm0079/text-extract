@@ -2,6 +2,8 @@ import { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, FormText, Input } from 'reactstrap';
+import HomeButton from './HomeButton';
+import LogoImage from './LogoImage';
 import LogoutButton from './LogoutButton';
 
 import './upload.css';
@@ -124,7 +126,11 @@ const UploadFile = () => {
       );
       setConfirmation('Finished');
       const OCRBody = await response.json();
-      // console.log('OCRBody', OCRBody);
+      console.log('OCRBody', OCRBody);
+
+      if (OCRBody.statusCode === 200) {
+        navigate('/cards');
+      }
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -135,6 +141,9 @@ const UploadFile = () => {
 
   return (
     <>
+      <LogoImage />
+      <HomeButton />
+
       <LogoutButton />
       <div className="row" style={{ marginTop: '6em' }}>
         <div className="col-6 offset-3">
@@ -142,7 +151,7 @@ const UploadFile = () => {
             <FormGroup>
               <h3 className="text-danger">{confirmation}</h3>
               <h6>Upload Invoice</h6>
-              <FormText color="muted">PNG,JPG,PDF</FormText>
+              <FormText color="muted">PDF,PNG,JPG</FormText>
 
               <div className="form-group files color">
                 <FileBase64 onDone={getFiles}></FileBase64>

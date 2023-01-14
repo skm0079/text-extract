@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import logo from '../assets/twlogo.jfif';
 import './styles.css';
 
 interface ErrorMessages {
@@ -52,7 +52,7 @@ function LoginPage() {
       } else {
         setIsSubmitted(true);
         localStorage.setItem('TEST-TOKEN', 'dummy');
-        navigate('/home');
+        navigate('/cards');
       }
     } else {
       // Username not found
@@ -90,7 +90,12 @@ function LoginPage() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
+        <div className="login-logo-title-container">
+          <div className="title">
+            <img src={logo} height={120} />
+          </div>
+          <div className="title">Invoice Automation System</div>
+        </div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>

@@ -3,11 +3,15 @@ import apis from '../api/url';
 import { getService } from '../services/httpServices';
 import CardItem from '../components/CardItem';
 import LogoutButton from '../components/LogoutButton';
-import { Navigate } from 'react-router-dom';
-import HomeButton from '../components/HomeButton';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { BounceLoader } from 'react-spinners';
+import { Button } from 'reactstrap';
+import SearchBar from '../components/SearchBar';
+import LogoImage from '../components/LogoImage';
 
 const CardsPage = () => {
+  const navigate = useNavigate();
+
   const [allData, setAllData] = useState<any>([]);
   const [displayData, setDisplayData] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,13 +35,30 @@ const CardsPage = () => {
     getAllData();
   }, []);
 
+  const handleBigNext = () => {
+    navigate('/home');
+  };
+
   if (!localStorage.getItem('TEST-TOKEN')) return <Navigate to="/login" />;
 
   return (
     <>
-      <HomeButton />
+      <LogoImage />
       <LogoutButton />
-      <h1 className="cardpage-header">Cards Page</h1>
+      <div className="row" style={{ marginTop: '5em' }}>
+        <div className="col flex-between">
+          <Button
+            onClick={handleBigNext}
+            color="warning"
+            className="add-invoice-btn"
+          >
+            Add Invoice
+          </Button>
+          <SearchBar allData={allData} setDisplayData={setDisplayData} />
+        </div>
+      </div>
+
+      <h1 className="cardpage-header">View Invoices List</h1>
       <div className="flex-between">
         {displayData
           ? displayData.map((disdata: any, idx: number) => (

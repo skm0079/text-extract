@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 const HomeButton = () => {
   const navigate = useNavigate();
   const handleHome = () => {
-    if (localStorage.getItem('TEST-TOKEN')) navigate('/home');
+    if (localStorage.getItem('TEST-TOKEN')) navigate('/cards');
   };
   return (
     <Button color="secondary" onClick={handleHome} className="home-btn">
