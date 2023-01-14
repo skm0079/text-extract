@@ -16,16 +16,17 @@ const CardItem = (props: Props) => {
   return (
     <Card
       body
-      className="text-center"
+      className="invoice-card"
       style={{
         width: '18rem',
       }}
     >
       <CardTitle tag="h5">{processFileName(cardData.fileName)}</CardTitle>
-      <CardText>{cardData.datetime}</CardText>
+      <CardText>{cardData.datetime.split(',')[0]}</CardText>
       <Button
         color="primary"
         onClick={() => navigate('/card-data', { state: cardData })}
+        style={{ maxWidth: '100px', marginLeft: '5em' }}
       >
         View
       </Button>

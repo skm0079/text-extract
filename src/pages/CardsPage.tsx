@@ -8,6 +8,8 @@ import { BounceLoader } from 'react-spinners';
 import { Button } from 'reactstrap';
 import SearchBar from '../components/SearchBar';
 import LogoImage from '../components/LogoImage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const CardsPage = () => {
   const navigate = useNavigate();
@@ -45,21 +47,36 @@ const CardsPage = () => {
     <>
       <LogoImage />
       <LogoutButton />
-      <div className="row" style={{ marginTop: '5em' }}>
-        <div className="col flex-between">
+
+      <div className="row">
+        <div className="col flex-end">
           <Button
             onClick={handleBigNext}
-            color="warning"
+            color="success"
             className="add-invoice-btn"
           >
-            Add Invoice
+            <div className="flex-between">
+              <FontAwesomeIcon icon={faPlus} />
+              Add Invoice
+            </div>
           </Button>
+        </div>
+      </div>
+      <div className="row" style={{ marginTop: '1em' }}>
+        <div
+          className="col"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            textAlign: 'center',
+          }}
+        >
+          <h2 className="cardpage-header">Invoices</h2>
           <SearchBar allData={allData} setDisplayData={setDisplayData} />
         </div>
       </div>
 
-      <h1 className="cardpage-header">View Invoices List</h1>
-      <div className="flex-between">
+      <div className="cardpage-invoice-item-container">
         {displayData
           ? displayData.map((disdata: any, idx: number) => (
               <CardItem key={idx} cardData={disdata} />

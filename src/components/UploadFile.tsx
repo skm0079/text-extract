@@ -151,13 +151,16 @@ const UploadFile = () => {
             <FormGroup>
               <h3 className="text-danger">{confirmation}</h3>
               <h6>Upload Invoice</h6>
-              <FormText color="muted">PDF,PNG,JPG</FormText>
+              <FormText color="muted">
+                (Accepted File Types: pdf, png, jpg only)
+              </FormText>
 
               <div className="form-group files color">
                 <FileBase64 onDone={getFiles}></FileBase64>
               </div>
             </FormGroup>
             <Button
+              color="primary"
               id="big-next-btn"
               disabled={isLoading}
               onClick={handleBigNext}

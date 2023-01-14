@@ -7,7 +7,7 @@ const HomeButton = () => {
     if (localStorage.getItem('TEST-TOKEN')) navigate('/cards');
   };
   return (
-    <Button color="secondary" onClick={handleHome} className="home-btn">
+    <Button color="primary" onClick={handleHome} className="home-btn">
       Home
     </Button>
   );
