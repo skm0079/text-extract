@@ -2,6 +2,7 @@ import { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, FormText, Input } from 'reactstrap';
+import LogoutButton from './LogoutButton';
 
 import './upload.css';
 
@@ -133,30 +134,33 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="row" style={{ marginTop: '6em' }}>
-      <div className="col-6 offset-3">
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <h3 className="text-danger">{confirmation}</h3>
-            <h6>Upload Invoice</h6>
-            <FormText color="muted">PNG,JPG,PDF</FormText>
+    <>
+      <LogoutButton />
+      <div className="row" style={{ marginTop: '6em' }}>
+        <div className="col-6 offset-3">
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <h3 className="text-danger">{confirmation}</h3>
+              <h6>Upload Invoice</h6>
+              <FormText color="muted">PNG,JPG,PDF</FormText>
 
-            <div className="form-group files color">
-              <FileBase64 onDone={getFiles}></FileBase64>
-            </div>
-          </FormGroup>
-          <Button
-            id="big-next-btn"
-            disabled={isLoading}
-            onClick={handleBigNext}
-          >
-            {!confirmation || confirmation === 'Finished'
-              ? 'Next'
-              : confirmation}
-          </Button>
-        </Form>
+              <div className="form-group files color">
+                <FileBase64 onDone={getFiles}></FileBase64>
+              </div>
+            </FormGroup>
+            <Button
+              id="big-next-btn"
+              disabled={isLoading}
+              onClick={handleBigNext}
+            >
+              {!confirmation || confirmation === 'Finished'
+                ? 'Next'
+                : confirmation}
+            </Button>
+          </Form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
