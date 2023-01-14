@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Button } from 'reactstrap';
+import DropDown from './DropDown';
 
 interface SearchProps {
   allData: any[];
@@ -18,13 +19,28 @@ const SearchBar = (props: SearchProps) => {
   };
 
   const searchHandler = () => {
+    if (!searchText) return;
     console.log('AllData', allData);
     let modAllData: any[] = [];
-    for (let i = 0; i < allData.length; i++) {
-      Object.keys(allData[i]).forEach((key) => {
-        // console.log(allData[i][key].toLowerCase());
-        if (allData[i][key].includes(searchText) && !key.includes('table_')) {
-          modAllData.push(allData[i]);
+
+    const filterAllData = allData.map((data: any) => {
+      const keyset: any[] = [];
+      Object.keys(data).forEach((key) => {
+        keyset.push(key);
+      });
+
+      const tableKey = keyset.find((key: string) => key.includes('table_'));
+      delete data[tableKey];
+      return data;
+    });
+
+    for (let i = 0; i < filterAllData.length; i++) {
+      Object.keys(filterAllData[i]).forEach((key) => {
+        if (filterAllData[i][key].toLowerCase().includes(searchText)) {
+          const res = modAllData.find(
+            (data: any) => data['id'] === filterAllData[i]['id']
+          );
+          if (!res) modAllData.push(filterAllData[i]);
         }
       });
     }
@@ -34,7 +50,10 @@ const SearchBar = (props: SearchProps) => {
     modAllData = [];
   };
   return (
-    <div>
+    <div className="d-flex align-content-center">
+      <div style={{ marginTop: '10px', marginLeft: '10px' }}>
+        <DropDown />
+      </div>
       <div className="Search-container">
         <input
           type="text"

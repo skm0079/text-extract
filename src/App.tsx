@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import NotFound from './pages/NotFound';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function App() {
   return (

@@ -59,3 +59,10 @@
   text-transform: capitalize;
   text-align: center;
 }
+.upload-file-asset-image {
+  position: absolute;
+  top: 2em;
+  left: 20em;
+  width: 80px;
+  z-index: 2;
+}

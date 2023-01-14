@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, FormText, Input } from 'reactstrap';
 import HomeButton from './HomeButton';
 import LogoImage from './LogoImage';
 import LogoutButton from './LogoutButton';
+import UploadImage from '../assets/upload.png';
 
 import './upload.css';
 
@@ -143,7 +144,6 @@ const UploadFile = () => {
     <>
       <LogoImage />
       <HomeButton />
-
       <LogoutButton />
       <div className="row" style={{ marginTop: '6em' }}>
         <div className="col-6 offset-3">
@@ -156,6 +156,7 @@ const UploadFile = () => {
               </FormText>
 
               <div className="form-group files color">
+                {/* <img src={UploadImage} className="upload-file-asset-image" /> */}
                 <FileBase64 onDone={getFiles}></FileBase64>
               </div>
             </FormGroup>

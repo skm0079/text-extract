@@ -67,7 +67,7 @@ const CardsPage = () => {
           className="col"
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             textAlign: 'center',
           }}
         >

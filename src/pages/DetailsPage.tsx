@@ -52,7 +52,7 @@ const DetailsPage = () => {
                   <td>{state['Beneficiary Name:']}</td>
                   <td>{state['Beneficiary Account Number:']}</td>
                   <td>{state['Bank Name and Address:']}</td>
-                  <td>{state['Bank Swift Code:']}</td>
+                  <td>{state['Bank IFSC Code:']}</td>
                   <td>{state['Total']}</td>
                 </tr>
               </tbody>
