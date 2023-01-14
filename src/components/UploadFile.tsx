@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// @ts-ignore
 import FileBase64 from 'react-file-base64';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, FormText, Input } from 'reactstrap';
