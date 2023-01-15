@@ -63,15 +63,17 @@ const CardsPage = () => {
         </div>
       </div>
       <div className="row" style={{ marginTop: '1em' }}>
+        <div className="col-lg-2">
+          <h2 className="cardpage-header">Invoices</h2>
+        </div>
         <div
-          className="col"
+          className="col-lg-10"
           style={{
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'flex-end',
             textAlign: 'center',
           }}
         >
-          <h2 className="cardpage-header">Invoices</h2>
           <SearchBar allData={allData} setDisplayData={setDisplayData} />
         </div>
       </div>

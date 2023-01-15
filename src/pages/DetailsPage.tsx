@@ -12,7 +12,7 @@ const DetailsPage = () => {
 
   const { state } = useLocation();
   useEffect(() => {
-    console.log('Loc State', state);
+    // console.log('Loc State', state);
     Object.keys(state).forEach((key) => {
       if (key.includes('table_')) {
         setTable(state[key]);

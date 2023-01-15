@@ -32,7 +32,7 @@
   right: 0;
   height: 56px;
   content: '';
-  background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+  background-image: url('../assets/upload.png');
   display: block;
   margin: 0 auto;
   background-size: 100%;
@@ -58,11 +58,4 @@
   font-weight: 600;
   text-transform: capitalize;
   text-align: center;
-}
-.upload-file-asset-image {
-  position: absolute;
-  top: 2em;
-  left: 20em;
-  width: 80px;
-  z-index: 2;
 }

@@ -20,7 +20,9 @@ const SearchBar = (props: SearchProps) => {
 
   // Removes Object key without mutation
   const removeKey = (key: string, { [key]: _, ...rest }) => rest;
-
+  function removeDuplicates(arr: any[]) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  }
   const searchHandler = () => {
     if (!searchText) return;
     console.log('AllData Start', allData);
@@ -28,7 +30,7 @@ const SearchBar = (props: SearchProps) => {
 
     const allDataCopy = allData.map((data: any) => data);
 
-    // Deletes Table key
+    // Deletes Table key into filterAllData
     const filterAllData = allDataCopy.map((data: any) => {
       const keyset: any[] = [];
       Object.keys(data).forEach((key) => {
@@ -36,18 +38,18 @@ const SearchBar = (props: SearchProps) => {
       });
 
       const tableKey = keyset.find((key: string) => key.includes('table_'));
-      // delete data[tableKey];
       const mutData = removeKey(tableKey, data);
       return mutData;
     });
 
     for (let i = 0; i < filterAllData.length; i++) {
       Object.keys(filterAllData[i]).forEach((key) => {
-        if (filterAllData[i][key].toLowerCase().includes(searchText)) {
-          const res = modAllData.find(
-            (data: any) => data['id'] === filterAllData[i]['id']
-          );
-          if (!res) modAllData.push(filterAllData[i]['id']);
+        if (
+          filterAllData[i][key].toLowerCase().includes(searchText.toLowerCase())
+        ) {
+          const temp: any[] = [];
+          temp.push(filterAllData[i]['id']);
+          modAllData = removeDuplicates(temp);
         }
       });
     }
