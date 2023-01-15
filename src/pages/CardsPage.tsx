@@ -24,7 +24,7 @@ const CardsPage = () => {
       const { data } = await getService(apis.DB_DETAILS);
       setAllData(data.body);
       setDisplayData(data.body);
-      console.log('Display Data', data.body);
+      // console.log('Display Data', data.body);
     } catch (err) {
       console.log(err);
       setIsLoading(false);

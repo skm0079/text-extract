@@ -18,20 +18,27 @@ const SearchBar = (props: SearchProps) => {
     if (!sterm) setDisplayData(allData);
   };
 
+  // Removes Object key without mutation
+  const removeKey = (key: string, { [key]: _, ...rest }) => rest;
+
   const searchHandler = () => {
     if (!searchText) return;
-    console.log('AllData', allData);
+    console.log('AllData Start', allData);
     let modAllData: any[] = [];
 
-    const filterAllData = allData.map((data: any) => {
+    const allDataCopy = allData.map((data: any) => data);
+
+    // Deletes Table key
+    const filterAllData = allDataCopy.map((data: any) => {
       const keyset: any[] = [];
       Object.keys(data).forEach((key) => {
         keyset.push(key);
       });
 
       const tableKey = keyset.find((key: string) => key.includes('table_'));
-      delete data[tableKey];
-      return data;
+      // delete data[tableKey];
+      const mutData = removeKey(tableKey, data);
+      return mutData;
     });
 
     for (let i = 0; i < filterAllData.length; i++) {
@@ -40,14 +47,21 @@ const SearchBar = (props: SearchProps) => {
           const res = modAllData.find(
             (data: any) => data['id'] === filterAllData[i]['id']
           );
-          if (!res) modAllData.push(filterAllData[i]);
+          if (!res) modAllData.push(filterAllData[i]['id']);
         }
       });
     }
 
+    const finalDisplayData: any[] = [];
+    allData.forEach((data: any) => {
+      for (let i = 0; i < modAllData.length; i++) {
+        if (modAllData[i] === data['id']) finalDisplayData.push(data);
+      }
+    });
+
     console.log('Mod All Data', modAllData);
-    setDisplayData(modAllData);
-    modAllData = [];
+    console.log('finalDisplayData', finalDisplayData);
+    setDisplayData(finalDisplayData);
   };
   return (
     <div className="d-flex align-content-center">

@@ -40,7 +40,7 @@ const DetailsPage = () => {
                   <th>Beneficiary Name</th>
                   <th>Beneficiary Account Number</th>
                   <th>Bank Name and Address</th>
-                  <th>Bank Swift Code</th>
+                  <th>Bank IFSC Code</th>
                   <th>Total</th>
                 </tr>
               </thead>
