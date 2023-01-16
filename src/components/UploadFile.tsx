@@ -37,6 +37,26 @@ const UploadFile = () => {
       // S3 Target File
       let targetImage = files.name;
 
+      // Put Upload File
+
+      // const body = {
+      //   file: files.base64,
+      // };
+
+      // const res = await fetch(
+      //   `https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production/react-text-extract-webapp-files-raw/${files.name}`,
+      //   {
+      //     method: 'PUT',
+      //     headers: {
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(body),
+      //   }
+      // );
+
+      // console.log('Raw Upload', res);
+
       if (files.type === 'image/jpeg' || files.type === 'image/png') {
         const data = {
           fileName: files?.name,
@@ -49,10 +69,10 @@ const UploadFile = () => {
         const res = await fetch(
           'https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production',
           {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               Accept: 'application/json',
-              'Content-Type': 'application.json',
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
           }
@@ -93,13 +113,14 @@ const UploadFile = () => {
           img: image,
         };
 
+        // console.log(JSON.stringify(data));
+
         const res = await fetch(
           'https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production',
           {
             method: 'POST',
             headers: {
               Accept: 'application/json',
-              'Content-Type': 'application.json',
             },
             body: JSON.stringify(data),
           }
@@ -109,14 +130,18 @@ const UploadFile = () => {
 
         targetImage = files.name.replace('.pdf', '.png');
       }
+      console.log(
+        JSON.stringify({
+          file: targetImage,
+        })
+      );
 
       const response = await fetch(
-        'https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production/ocr',
+        `https://pwlrz8v3x4.execute-api.us-east-1.amazonaws.com/Production/ocr?file=${targetImage}`,
         {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application.json',
           },
           // body: JSON.stringify(targetImage),
           body: JSON.stringify({
@@ -151,7 +176,7 @@ const UploadFile = () => {
               <h3 className="text-danger">{confirmation}</h3>
               <h6>Upload Invoice</h6>
               <FormText color="muted">
-                (Accepted File Types: pdf, png, jpg only)
+                (Accepted File Types: pdf, png, jpg only)*
               </FormText>
               <div className="form-group files color">
                 <FileBase64 onDone={getFiles}></FileBase64>
